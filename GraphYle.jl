@@ -1,7 +1,7 @@
 
 module GraphYle
 
-export get_cost, return_random_next, graph
+export get_cost, return_random_next, graph, Graph
 
 using JLD
 using StatsBase
@@ -16,14 +16,14 @@ using StatsBase
 struct Graph
     matrix :: Array{Int64, 2}
     number_of_nodes :: Int
-    function Graph()
-        matrix = load("ch150.jld")["data"] # Para utilizar de outras instância de teste basta substituir aqui no load
+    function Graph(instace :: String)
+        matrix = load(instace)["data"] 
         number_of_nodes = size(matrix)[1]
         new(matrix,number_of_nodes)
     end
 end
 
-const graph = Graph()
+const graph = Graph("graph_m51.jld") # Nome da instância
 
 function get_cost(current_node :: Int, next_node :: Int, graph :: Graph = graph)
     # @assert( current_node < graph.number_of_nodes || next_node < graph.number_of_nodes , "Node atual e node requerido inexistente")

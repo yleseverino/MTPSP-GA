@@ -6,37 +6,20 @@ using Main.PopYle: create_population
 using Main.GraphYle: get_cost, return_random_next, graph
 using Main.PathYle: get_list_cost
 
-
 mutable struct Genetic
     number_cars :: Int
-    number_population :: Int
     number_selected :: Int
-    number_cross_over :: Int
     selects :: Vector{Any}
-    population :: Vector{Any}
-    function Genetic(number_cars :: Int = 3)
+    function Genetic(number_cars :: Int = 3, number_population :: Int = 50)
         new(    number_cars, 
-                50, # tamanho da população
-                50, # tamanho da população
-                50, # tamanho da população
-                [] 
+                number_population, 
+                create_population(number_cars, number_population) # Função que gera a pupulação aleatoria
             )   
     end
 end
 
 
 function seletion!(genetic :: Genetic)
-
-    genetic.population = create_population(genetic.number_cars, genetic.number_population)
-
-    for ind in genetic.population
-        if !(ind in genetic.selects)
-            push!(genetic.selects, deepcopy(ind))
-        end
-    end
-    # union!(genetic.selects, genetic.population)
-
-    sort!(genetic.selects, by = x -> x[1][1])
     genetic.selects = genetic.selects[1:genetic.number_selected]
 end
 
@@ -149,10 +132,10 @@ end
 
 function run!(genetic :: Genetic, number_generations :: Int = 2000) # Numero de gerações
     for i = 1:number_generations
-        # println("Geração :", i)
-        seletion!(g)
+        println("Geração :", i)
         SCX_cross_over!(g)
         mutation!(g)
+        seletion!(g)
     end
 end
 
@@ -161,12 +144,12 @@ end
 # g.selects
 
 
-g = Genetic(10) # O numero dentro de Genectic são os numeros de caixeiros da instância
-
+g = Genetic(3) # O numero dentro de Genectic são os numeros de caixeiros da instância
 resultados = []
+
 for i = 1:30
     println("Instância :", i)
-    g = Genetic(10)
+    g = Genetic(3) 
     run!(g)
     println(g.selects[1][1])
     push!(resultados,g.selects[1][1])
