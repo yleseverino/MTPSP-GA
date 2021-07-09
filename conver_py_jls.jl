@@ -1,13 +1,3 @@
-struct Graph
-    matrix :: Array{Int64, 2}
-    number_of_nodes :: Int
-    function Graph()
-        matrix = load("graph_m51.jld")["data"]
-        number_of_nodes = size(matrix)[1]
-        new(matrix,number_of_nodes)
-    end
-end
-
 using JLD
 using PyCall
 py"""
