@@ -1,4 +1,6 @@
-# Projeto de réplica de algoritmo genético implementado pelo [Al-Furhudand Hussain](https://www.researchgate.net/publication/343350213_Genetic_Algorithms_for_the_Multiple_Travelling_Salesman_Problem)
+# Projeto de réplica de algoritmo genético implementado pelo [Al-Furhudand Hussain](https://www.researchgate.net/publication/343350213_Genetic_Algorithms_for_the_Multiple_Travelling_Salesman_Problem) na linguagem de programação Julia
+
+Para baixar o artigo basta clicar <a href="https://github.com/yleseverino/MTPSP-GA/raw/main/Artigo.pdf">aqui</a>
 
 
 ## Getting Started
